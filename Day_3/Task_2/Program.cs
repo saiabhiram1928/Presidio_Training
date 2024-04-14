@@ -2,28 +2,23 @@
 {
     internal class Program
     {
-        int HandlingIntegerInput()
+       static void solve()
         {
-            int num;
-
+            int num, ans = 0;
             do
             {
+                Console.WriteLine("Please enter the number or enter -1 to quit : ");
                 num = Convert.ToInt32(Console.ReadLine());
-                if(num > 0) Console.WriteLine("Please Enter a vaild number");
-            } while (num > 0);
-
-            return num;
+                if (num < 0) break;
+                ans = Math.Max(ans, num);
+                Console.WriteLine($"The max value until now is  : {ans}");
+            } while(num > 0);
         }
         static void Main(string[] args)
         {
-            Program program = new Program();
-            Console.WriteLine("Enter num1 : ");
-            int num1 = program.HandlingIntegerInput();
-            Console.WriteLine("Enter num2 : ");
-            int num2 = program.HandlingIntegerInput();
-            if(num1 > num2) { Console.WriteLine($"{num1} > {num2}"); }
-            else if(num1 < num2) { Console.WriteLine($"{num1} <  {num2}"); }
-            else { Console.WriteLine($"{num1} = {num2}"); }
+            Console.WriteLine("-------------Welcome-------------");
+            solve();
+            Console.WriteLine("-------------Thank you-----------");
         }
     }
 }
