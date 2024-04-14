@@ -7,7 +7,7 @@
             int num = 0, sum = 0, count = 0;
             do
             {
-                Console.WriteLine("Enter the number (or) Enter -1 to quit : ");
+                Console.WriteLine("Enter the number (or) Enter -1 to get the average : ");
                 num = Convert.ToInt32(Console.ReadLine());
                 if (num < 0) break;
                 if(num % 7 == 0)
