@@ -200,7 +200,6 @@ namespace ReqTrackerApplication
             {
                 if (employees[i] != null && employees[i].Id == id)
                 {
-                    Console.WriteLine("Please Enter Updated Name : ");
                     employees[i]  = null;
                     return;
                 }

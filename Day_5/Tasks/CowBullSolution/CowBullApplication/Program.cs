@@ -26,7 +26,6 @@
                 if (index > 0)
                 {
                     temp[index] = '#';
-                    Console.WriteLine(temp);
                     cowandbull[1]++;
                 }
             }
@@ -38,7 +37,7 @@
             string main = HandlingStringInput(),str;
             do 
             {
-                Console.WriteLine("Please Enter the Guess Word or -1 to exit: ");
+                Console.WriteLine("Please Enter the Guess Word: ");
                 str = HandlingStringInput();
                 int[] CowAndBull = CountOfCowsAndBulls(str, main);
                 if (CowAndBull[0] != 4)
