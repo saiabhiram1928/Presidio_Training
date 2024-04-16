@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqTrackerApplication", "ReqTrackerApplication\ReqTrackerApplication.csproj", "{312F6B8E-2C19-4AC1-88E2-0424CDF19D1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqTrackerModellib", "ReqTrackerModellib\ReqTrackerModellib.csproj", "{1F4F71D7-694F-4234-9E34-4686E6E5D3AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{312F6B8E-2C19-4AC1-88E2-0424CDF19D1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{312F6B8E-2C19-4AC1-88E2-0424CDF19D1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{312F6B8E-2C19-4AC1-88E2-0424CDF19D1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{312F6B8E-2C19-4AC1-88E2-0424CDF19D1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F4F71D7-694F-4234-9E34-4686E6E5D3AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F4F71D7-694F-4234-9E34-4686E6E5D3AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F4F71D7-694F-4234-9E34-4686E6E5D3AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F4F71D7-694F-4234-9E34-4686E6E5D3AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1CE68527-62A4-441D-84E7-C7BBEB4DEA42}
+	EndGlobalSection
+EndGlobal
