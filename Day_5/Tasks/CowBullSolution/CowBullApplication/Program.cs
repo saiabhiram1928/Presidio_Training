@@ -2,6 +2,10 @@
 {
     internal class Program
     {
+        /// <summary>
+        /// Takes string input , validates it and loop until you enter the valid string 
+        /// </summary>
+        /// <returns>String</returns>
         string HandlingStringInput()
         {
             string str = string.Empty;
@@ -14,6 +18,12 @@
             return str;
 
         }
+        /// <summary>
+        /// Contains Controller logic for CowAndBull game 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="main"></param>
+        /// <returns>Integer Array of size 2 where arr[0] represents cow and arr[1] represents bull</returns>
         int[] CountOfCowsAndBulls(string str,  string main)
         {
             int[] cowandbull = new int[2];
@@ -31,6 +41,9 @@
             }
             return cowandbull;
         }
+        /// <summary>
+        /// Main function 
+        /// </summary>
         void CowAndBullGame()
         {
             Console.WriteLine("Please Enter Main Word : ");
@@ -54,7 +67,7 @@
         static void Main(string[] args)
         {
             Program program = new Program();
-            program.CowAndBullGame();
+            program.CowAndBullGame();   
          
         }
     }
