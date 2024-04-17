@@ -44,7 +44,7 @@
         /// </summary>
         /// <param name="gr"></param>
         /// <param name="employee"></param>
-        void PrintEmployeeDetails(GovtRules gr , Employee employee)
+        void PrintEmployeeDetails(IGovtRules gr , Employee employee)
         {
             
             Console.WriteLine("--------*********-----------");

@@ -9,7 +9,7 @@ namespace Task_1
     /// <summary>
     /// Interface Contains EmployeePf , LeaveDetails, GratuityAmount methods
     /// </summary>
-    public interface GovtRules
+    public interface IGovtRules
     {
         public double EmployeePF(double basicSalary);
         public string LeaveDetails();

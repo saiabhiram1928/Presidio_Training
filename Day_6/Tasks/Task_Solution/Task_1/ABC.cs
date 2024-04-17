@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Task_1
 {
-    internal class ABC : Employee,GovtRules
+    internal class ABC : Employee,IGovtRules
     {
     
         /// <summary>
