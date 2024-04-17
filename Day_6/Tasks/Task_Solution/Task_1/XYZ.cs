@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_1
 {
-    internal class XYZ : Employee, GovtRules
+    internal class XYZ : Employee, IGovtRules
     {
         /// <summary>
         /// Default Constructor of Class XYZ
