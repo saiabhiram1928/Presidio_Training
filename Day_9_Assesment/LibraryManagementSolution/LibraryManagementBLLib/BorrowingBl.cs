@@ -45,9 +45,16 @@ namespace LibraryManagementBLLib
             req.Book.Availability = "Available";
             var respone = _borrowingRepository.Update(req);
             if (respone == null) ThrowingNullException("The Request With Given  Id is not availble");
-            return req.LateReturnFee;
+            double fees = req.LateReturnFee;
+            return fees;
         }
-        public  int Count()
+        public bool Delete(int id)
+        {
+            var response = (_borrowingRepository.Delete(id));
+            if(response == false) ThrowingNullException("The Request With Given  Id is not availble");
+            return response;
+        }
+        public int Count()
         {
             return _borrowingRepository.Count();
         }

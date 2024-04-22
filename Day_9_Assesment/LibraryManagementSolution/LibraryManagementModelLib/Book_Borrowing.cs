@@ -15,6 +15,7 @@ namespace LibraryManagementModelLib
         public DateOnly BorrowingDate { get; set; }
         public DateOnly DueDate { get; set; }
         public double LateReturnFee;
+        
         public DateOnly ReturningDate { get => returningDate; set 
             {
                 returningDate = value;

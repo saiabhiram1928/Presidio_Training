@@ -37,7 +37,7 @@ namespace LibraryManagementApplication
                 {
                     Console.WriteLine("Please Enter a Valid Phone Number");
                 }
-            } while (string.IsNullOrEmpty(str) && str.Length != 10);
+            } while (string.IsNullOrEmpty(str) || str.Length != 10);
             return str;
         }
         string HandlingStringInput(string Msg)
@@ -342,6 +342,17 @@ namespace LibraryManagementApplication
             }
             return;
         }
+        void DeleteReq()
+        {
+            try
+            {
+                Console.WriteLine("Please Enter Borrow Id req to be deleted");
+                int id = HandlingIntegerInput();
+                bool response = BorrowingMehtods.Delete(id);
+                if (response) { Console.WriteLine("Deleted Sucesfully"); }
+            }catch(NullReferenceException ex) { Console.WriteLine(ex.Message); }
+            catch(Exception ex) { Console.WriteLine(ex.Message ); } 
+        }
         void Menu()
         {
           int choice = 0;
@@ -385,6 +396,9 @@ namespace LibraryManagementApplication
                         break;
                     case 41:
                         ReturnBook();
+                        break;
+                    case 42:
+                        DeleteReq();
                         break;
                     default: Console.WriteLine("-----Bye---------"); break;
                 }
