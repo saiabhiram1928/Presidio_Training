@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace LibraryManagmentDALLib
 {
-    internal interface IRepository<K , T> where T : class
+    public interface IRepository<K , T> where T : class
     {
         List<T> GetAll();
         T GetById(K id);
         T Add(T item);
         T Update(T item);
         bool Delete(K id);
+        int Count();
 
     }
 }

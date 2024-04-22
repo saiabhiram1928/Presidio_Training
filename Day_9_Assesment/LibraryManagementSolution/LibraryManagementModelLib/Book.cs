@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace LibraryManagementModelLib
 {
     public class Book
+
     {
-        
 
         public int Id {  get; private set; }
         public string Title { get;  set; } = string.Empty;
@@ -34,7 +34,7 @@ namespace LibraryManagementModelLib
         }
         public override string ToString()
         {
-            return $"Id : {Id} \n Author : {Author} \n Publication Date : {Publication_Date} \n Status : {Availability}";
+            return $"Id : {Id} \n Title : ${Title} \n Author : {Author} \n Publication Date : {Publication_Date} \n Status : {Availability}";
         }
         public override bool Equals(object? obj)
         {
