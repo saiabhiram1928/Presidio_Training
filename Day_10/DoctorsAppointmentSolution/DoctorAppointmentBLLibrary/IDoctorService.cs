@@ -37,7 +37,7 @@ namespace DoctorAppointmentBLLibrary
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Boolean</returns>
-        public bool DeleteDoctortails(int key);
+        public int DeleteDocotrDetalis(int key);
         
         
 

@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DoctorAppointmentDALLibrary\DoctorAppointmentDALLibrary.csproj" />
-    <ProjectReference Include="..\DoctorAppointmentModelLib\DoctorAppointmentModelLib.csproj" />
+    <ProjectReference Include="..\ShoppingDALLibrary\ShoppingDALLibrary.csproj" />
+    <ProjectReference Include="..\ShoppingModelLib\ShoppingModelLibrary.csproj" />
   </ItemGroup>
 
 </Project>

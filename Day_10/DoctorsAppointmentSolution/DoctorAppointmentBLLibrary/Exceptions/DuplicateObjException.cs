@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace DoctorAppointmentBLLibrary.Exceptions
 {
-    internal class DuplicateObjException
+    internal class DuplicateObjException : Exception
     {
+        public DuplicateObjException() : base("Duplicate object found.") { }
+
+
+        public DuplicateObjException(string message) : base(message) { }
+
+
+        public DuplicateObjException(string message, Exception innerException) : base(message, innerException) { }
     }
 }

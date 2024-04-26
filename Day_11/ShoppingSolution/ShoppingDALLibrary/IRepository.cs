@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoctorAppointmentDALLibrary
+namespace ShoppingDALLibrary
 {
-    public interface IRepository<K,T> where T : class
+    internal interface IRepository <K ,T> where T : class
     {
-         List<T> GetAll();
-        T GetById(K key);
         T Add(T item);
+        T GetByKey(K key);
+        ICollection<T> GetAll();
         T Update(T item);
         T Delete(K key);
-
     }
 }
