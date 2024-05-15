@@ -1,64 +1,122 @@
-﻿using DoctorAppointmentModelLib;
+﻿using DoctorAppointmentDALLibrary.Context;
+using DoctorAppointmentModelLib;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
 
 namespace DoctorAppointmentDALLibrary
 {
-     public class DoctorRepository : IRepository<int, Doctor>
+    public class DoctorRepository : IRepository<int, Doctor>
     {
-        readonly Dictionary<int, Doctor> _doctor;
+        private readonly DoctorAppointmentContext context;
 
-       public DoctorRepository()
-       {
-            _doctor = new Dictionary<int, Doctor>();
-
-       }
-        public List<Doctor> GetAll()
+        public DoctorRepository(DoctorAppointmentContext context)
         {
-            if (_doctor.Count == 0) return null;
-            return _doctor.Values.ToList();
-              
+            this.context = context;
         }
 
-        public Doctor GetById(int key)
+        public async Task<Doctor> Add(Doctor item)
         {
-            return _doctor[key] ?? null;
-        }
-        int GenerateId()
-        {
-            if (_doctor.Count == 0) return 1;
-            int id = _doctor.Keys.Max() + 1;
-            return id;
-        }
-
-        public Doctor Add(Doctor item)
-        {
-            if (_doctor.ContainsValue(item)) return null;
-            int id = GenerateId();
-            _doctor[id] = item;
-            return _doctor[id];
-        }
-
-        public Doctor Update(Doctor item)
-        {
-            if (_doctor.ContainsKey(item.Id) == false) return null;
-            _doctor[item.Id] = item;
-            return _doctor[item.Id];
+            if (item == null) return null;
+            try
+            {
+                await context.Doctors.AddAsync(item);
+                await context.SaveChangesAsync();
+                return item;
+            }
+            catch (DbException dbEx)
+            {
+                Console.WriteLine($"Database error: {dbEx.Message}");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return null;
+            }
         }
 
-        public Doctor Delete(int key)
+        public async Task<bool> Delete(int key)
         {
-            if (_doctor.ContainsKey(key) ==false) return null;
-            Doctor RemovedDoc = _doctor[key];
-            _doctor.Remove(key);
-            return RemovedDoc;
-        }
-       
+            try
+            {
+                var doctor = await context.Doctors.FindAsync(key);
+                if (doctor == null) return false;
 
-        
+                context.Doctors.Remove(doctor);
+                await context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbException dbEx)
+            {
+                Console.WriteLine($"Database error: {dbEx.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<List<Doctor>> GetAll()
+        {
+            try
+            {
+                return await context.Doctors.ToListAsync();
+            }
+            catch (DbException dbEx)
+            {
+                Console.WriteLine($"Database error: {dbEx.Message}");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return null;
+            }
+        }
+
+        public async Task<Doctor> GetById(int key)
+        {
+            try
+            {
+                return await context.Doctors.FindAsync(key);
+            }
+            catch (DbException dbEx)
+            {
+                Console.WriteLine($"Database error: {dbEx.Message}");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return null;
+            }
+        }
+
+        public bool Update(Doctor item)
+        {
+            try
+            {
+                context.Doctors.Update(item);
+                context.SaveChanges();
+                return true;
+            }
+            catch (DbException dbEx)
+            {
+                Console.WriteLine($"Database error: {dbEx.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return false;
+            }
+        }
+     
     }
 }

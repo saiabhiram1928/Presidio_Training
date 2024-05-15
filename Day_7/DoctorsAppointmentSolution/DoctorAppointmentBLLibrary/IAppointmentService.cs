@@ -13,19 +13,19 @@ namespace DoctorAppointmentBLLibrary
         /// Gives All the Appointment Present
         /// </summary>
         /// <returns></returns>
-        public List<Appointmnet> GetAllAppointment();
+        public List<Appointment> GetAllAppointment();
         /// <summary>
         /// Gives Specific Appointment Details 
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Appointment</returns>
-        public Appointmnet GetAppointmentDetails(int key);
+        public Appointment GetAppointmentDetails(int key);
         /// <summary>
         /// Updates An Specific Appointment and Gives true if sucess
         /// </summary>
         /// <param name="appointmnet"></param>
         /// <returns>Boolean</returns>
-        public bool UpdateAppointment(Appointmnet appointmnet);
+        public bool UpdateAppointment(Appointment appointmnet);
         /// <summary>
         /// Deltes An Appointment and Gives true if sucess
         /// </summary>
@@ -37,7 +37,7 @@ namespace DoctorAppointmentBLLibrary
         /// </summary>
         /// <param name="appointmnet"></param>
         /// <returns>Boolean</returns>
-        public bool AddAppointment(Appointmnet appointmnet);
+        public bool AddAppointment(Appointment appointmnet);
         /// <summary>
         /// Takes id of the appointment and gives patient details on whose appointment registered
         /// </summary>

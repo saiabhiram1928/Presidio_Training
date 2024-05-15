@@ -6,35 +6,30 @@ using System.Threading.Tasks;
 
 namespace DoctorAppointmentModelLib
 {
-    public class Appointmnet
+    public class Appointment
     {
        
         public Doctor? DoctorAssigned { get; set; } 
         public Patient? PatientRaised { get; set; }
         public int Id {  get; set; }
         public string AppointmentDetails {  get; set; } = string.Empty;
-        public DateOnly AppointmentDate {  get; set; }
-        public TimeOnly AppointmentTime { get; set; }
-        public Appointmnet() 
+        public DateTime AppointmentDateAndTime {  get; set; }
+       
+        public Appointment() 
         {
             Id = 0;
             DoctorAssigned = null;
             PatientRaised = null;
             AppointmentDetails = string.Empty;
-            AppointmentTime = TimeOnly.FromDateTime(DateTime.Now);
-            AppointmentDate = DateOnly.FromDateTime(DateTime.Now);
-          
-
+            AppointmentDateAndTime = (DateTime.Now);
         }
-        public Appointmnet(Doctor? doctorAssigned, Patient? patientRaised, int id, string appointment, DateOnly appointmentDate, TimeOnly appointmentTime)
+        public Appointment(Doctor? doctorAssigned, Patient? patientRaised, int id, string appointment, DateTime appointmentDate)
         {
             DoctorAssigned = doctorAssigned;
             PatientRaised = patientRaised;
             Id = id;
             AppointmentDetails = appointment;
-            AppointmentDate = appointmentDate;
-            AppointmentTime = appointmentTime;
-           
+            AppointmentDateAndTime = appointmentDate;
         }
 
     }

@@ -8,11 +8,11 @@ namespace DoctorAppointmentDALLibrary
 {
     internal interface IRepository<K,T> where T : class
     {
-         List<T> GetAll();
-        T GetById(K key);
-        T Add(T item);
-        T Update(T item);
-        T Delete(K key);
+        Task<List<T>> GetAll();
+        Task<T> GetById(K key);
+        Task <T> Add(T item);
+        bool Update(T item);
+        Task<bool> Delete(K key);
 
     }
 }

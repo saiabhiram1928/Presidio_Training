@@ -1,63 +1,126 @@
-﻿using DoctorAppointmentModelLib;
+﻿using DoctorAppointmentDALLibrary.Context;
+using DoctorAppointmentModelLib;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DoctorAppointmentDALLibrary
 {
-    public class AppointmentRepository : IRepository<int, Appointmnet>
+    public class AppointmentRepository : IRepository<int, Appointment>
     {
-        readonly Dictionary<int, Appointmnet> _appointment;
-
-        public AppointmentRepository()
+        DoctorAppointmentContext context;
+        public AppointmentRepository(DoctorAppointmentContext Context)
         {
-            _appointment = new Dictionary<int, Appointmnet>();
+            context = Context;
+        }
+        public async Task<Appointment> Add(Appointment item)
+        {
+            if (item == null) return null;
+            try
+            {
+                await context.Appointments.AddAsync(item);
+                await context.SaveChangesAsync();
+            }
+            catch (DbException dbEx)
+            {
+                Console.WriteLine($"Database error: {dbEx.Message}");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return null;
+            }
+            return item;
 
         }
-        public List<Appointmnet> GetAll()
+
+        public async Task<bool> Delete(int key)
         {
-            if (_appointment.Count == 0) return null;
-            return _appointment.Values.ToList();
+          Appointment? res = null;
+            try
+            {
+                 res = await context.Appointments.FindAsync(key);
+                if (res == null) return false;
+                context.Appointments.Remove(res);
+                await context.SaveChangesAsync();
+            }catch (DbException dbEx)
+            {
+                Console.WriteLine($"Databas error {dbEx.Message}");
+                return false;
+            }catch (Exception ex)
+            {
+                Console.WriteLine($"Exception Message {ex.Message}");
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<List<Appointment>> GetAll()
+        {
+            List<Appointment>? list;
+            try
+            {
+                 list = await context.Appointments.ToListAsync();
+            
+            }catch(DbException dbEx) 
+            {
+                Console.WriteLine($"Db error {dbEx.Message}");
+                return null;
+            }catch(Exception ex)
+            {
+                Console.WriteLine($"Exception {ex.Message}");
+                return null;
+            }
+            return list;
+        }
+
+        public async Task<Appointment> GetById(int key)
+        {
+            Appointment ? res;
+            try
+            {
+                res = await context.Appointments.FindAsync(key);
+            }
+            catch (DbException dbEx)
+            {
+                Console.WriteLine($"Db error {dbEx.Message}");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception {ex.Message}");
+                return null;
+            }
+            return res;
 
         }
 
-        public Appointmnet GetById(int key)
+        public bool Update(Appointment item)
         {
-            return _appointment[key] ?? null;
+            try
+            {
+                context.Appointments.Update(item);
+                context.SaveChanges();
+                return true;
+            }
+            catch (DbException dbEx)
+            {
+                Console.WriteLine($"Db error {dbEx.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception {ex.Message}");
+                return false;
+            }
+            
+
         }
-        int GenerateId()
-        {
-            if (_appointment.Count == 0) return 1;
-            int id = _appointment.Keys.Max() + 1;
-            return id;
-        }
-
-        public Appointmnet Add(Appointmnet item)
-        {
-            if (_appointment.ContainsValue(item)) return null;
-            int id = GenerateId();
-            _appointment[id] = item;
-            return _appointment[id];
-        }
-
-        public Appointmnet Update(Appointmnet item)
-        {
-            if (_appointment.ContainsKey(item.Id) == false) return null;
-            _appointment[item.Id] = item;
-            return _appointment[item.Id];
-        }
-
-        public Appointmnet Delete(int key)
-        {
-            if (_appointment.ContainsKey(key) == false) return null;
-            Appointmnet RemovedDoc = _appointment[key];
-            _appointment.Remove(key);
-            return RemovedDoc;
-        }
-
-
-
     }
 }
