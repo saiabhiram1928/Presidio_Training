@@ -11,7 +11,8 @@ namespace EmployeeReqTrackerModelLibrary
     public class Request
     {
         [Key]
-        public int RequestNumber { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         public string RequestMessage { get; set; }
         public DateTime RequestDate { get; set; } = System.DateTime.Now;
         public DateTime? ClosedDate { get; set; } = null;
@@ -22,8 +23,13 @@ namespace EmployeeReqTrackerModelLibrary
         
         public Employee RequestRaisedByEmployee { get; set; }
         
-        public int RequestClosedBy { get; set; }
+        public int? RequestClosedBy { get; set; }
         
-        public Employee RequestClosedByEmployee { get; set; }
+        public Employee? RequestClosedByEmployee { get; set; }
+        public ICollection<Solution> RequestSolutions { get; set; } = new List<Solution>();
+        public override string ToString()
+        {
+            return $"Request Id : {Id} \n Request Text : {RequestMessage} \n Raised By Employee : {RequestRaisedBy} \n Status : {RequestStatus} \n Request Date : {RequestDate} \n Request Closed : {ClosedDate} \n Request Closed By {RequestClosedBy} ";
+        }
     }
 }

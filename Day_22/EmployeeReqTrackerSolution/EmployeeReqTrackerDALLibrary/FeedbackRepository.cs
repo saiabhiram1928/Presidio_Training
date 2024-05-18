@@ -1,126 +1,127 @@
 ﻿using EmployeeReqTrackerModelLibrary;
 using EmployeeReqTrackerModelLibrary.Context;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Data.Common;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace EmployeeReqTrackerDALLibrary
 {
-    public class EmployeeRepository : IRepository<int, Employee>
+
+    public class FeedbackRepository : IRepository<int, Feedback>
     {
-        private readonly EmployeeReqTrackerContext _context;
-        public EmployeeRepository(EmployeeReqTrackerContext context)
+        readonly EmployeeReqTrackerContext _context;
+        public FeedbackRepository(EmployeeReqTrackerContext context)
         {
             _context = context;
         }
-        public async Task<Employee> Add(Employee item)
+
+        public async Task<Feedback> Add(Feedback item)
         {
             if (item == null) return null;
             try
             {
-                
-               _context.Add(item);
-                _context.SaveChanges();
+
+                await _context.AddAsync(item);
+                await _context.SaveChangesAsync();
                 return item;
             }
             catch (DbException dbEx)
             {
                 Console.WriteLine($"Database error: {dbEx.Message}");
-                return null;
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex}");
-                return null;
+
             }
+            return null;
         }
 
         public async Task<bool> Delete(int key)
         {
             try
             {
-                var employee = await GetById(key);
-                if (employee == null) return false;
+                var request = await GetById(key);
+                if (request == null) return false;
 
-                _context.Employees.Remove(employee);
+                _context.Remove(request);
                 await _context.SaveChangesAsync();
                 return true;
             }
             catch (DbException dbEx)
             {
                 Console.WriteLine($"Database error: {dbEx.Message}");
-                return false;
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                return false;
+
             }
+            return false;
         }
 
-        public async Task<IList<Employee>> GetAll()
+        public async Task<IList<Feedback>> GetAll()
         {
             try
             {
-                return await _context.Employees.ToListAsync();
+                return await _context.Feedbacks.ToListAsync();
             }
             catch (DbException dbEx)
             {
                 Console.WriteLine($"Database error: {dbEx.Message}");
-                return null;
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                return null;
-            }
 
+            }
+            return null;
         }
 
-        public async Task<Employee> GetById(int key)
+        public async Task<Feedback> GetById(int key)
         {
-           
             try
             {
-                var emp =  _context.Employees.Find(key);
-                return emp;
+                var req = await _context.Feedbacks.FindAsync(key);
+                return req;
             }
             catch (DbException dbEx)
             {
                 Console.WriteLine($"Database error: {dbEx.Message}");
-                return null;
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                return null;
+
             }
+            return null;
         }
 
-        public bool Update(Employee item)
+        public bool Update(Feedback item)
         {
             try
             {
-                _context.Employees.Update(item);
+                _context.Feedbacks.Update(item);
                 _context.SaveChanges();
                 return true;
             }
             catch (DbException dbEx)
             {
                 Console.WriteLine($"Database error: {dbEx.Message}");
-                return false;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                return false;
             }
-        }
-        public async Task<Employee> GetAllRequestsOfEmployee(int empId)
-        {
-            _context.ChangeTracker.Clear();
-            var emp = await _context.Employees.Include(e => e.RequestsRaised)
-                                 .FirstOrDefaultAsync(r => r.Id == empId);
-            return emp;
+            return false;
         }
     }
 }

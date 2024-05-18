@@ -1,47 +1,53 @@
 ﻿using EmployeeReqTrackerModelLibrary;
 using EmployeeReqTrackerModelLibrary.Context;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Data.Common;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace EmployeeReqTrackerDALLibrary
 {
-    public class EmployeeRepository : IRepository<int, Employee>
+    public class RequestRepository : IRepository<int, Request>
     {
-        private readonly EmployeeReqTrackerContext _context;
-        public EmployeeRepository(EmployeeReqTrackerContext context)
+        EmployeeReqTrackerContext _context;
+        public RequestRepository(EmployeeReqTrackerContext context) 
         {
             _context = context;
         }
-        public async Task<Employee> Add(Employee item)
+        public async Task<Request> Add(Request item)
         {
             if (item == null) return null;
             try
             {
-                
-               _context.Add(item);
-                _context.SaveChanges();
+              
+                await _context.Requests.AddAsync(item);
+                await _context.SaveChangesAsync();
                 return item;
             }
             catch (DbException dbEx)
             {
                 Console.WriteLine($"Database error: {dbEx.Message}");
-                return null;
+              
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex}");
-                return null;
+               
             }
+            return null;
         }
 
         public async Task<bool> Delete(int key)
         {
             try
             {
-                var employee = await GetById(key);
-                if (employee == null) return false;
+                var request = await GetById(key);
+                if (request == null) return false;
 
-                _context.Employees.Remove(employee);
+                _context.Requests.Remove(request);
                 await _context.SaveChangesAsync();
                 return true;
             }
@@ -57,50 +63,50 @@ namespace EmployeeReqTrackerDALLibrary
             }
         }
 
-        public async Task<IList<Employee>> GetAll()
+        public async Task<IList<Request>> GetAll()
         {
             try
             {
-                return await _context.Employees.ToListAsync();
+                return await _context.Requests.ToListAsync();
             }
             catch (DbException dbEx)
             {
                 Console.WriteLine($"Database error: {dbEx.Message}");
-                return null;
+                
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                return null;
-            }
 
+            }
+            return null;
         }
 
-        public async Task<Employee> GetById(int key)
+        public async Task<Request> GetById(int key)
         {
-           
             try
             {
-                var emp =  _context.Employees.Find(key);
-                return emp;
+                var req = await _context.Requests.FindAsync(key);
+                return req;
             }
             catch (DbException dbEx)
             {
                 Console.WriteLine($"Database error: {dbEx.Message}");
-                return null;
+                
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                return null;
+               
             }
+            return null;
         }
 
-        public bool Update(Employee item)
+        public bool Update(Request item)
         {
             try
             {
-                _context.Employees.Update(item);
+                _context.Requests.Update(item);
                 _context.SaveChanges();
                 return true;
             }
@@ -115,12 +121,14 @@ namespace EmployeeReqTrackerDALLibrary
                 return false;
             }
         }
-        public async Task<Employee> GetAllRequestsOfEmployee(int empId)
+        public async Task<Request> GetRequestWithSolutionsAsync(int requestId)
         {
             _context.ChangeTracker.Clear();
-            var emp = await _context.Employees.Include(e => e.RequestsRaised)
-                                 .FirstOrDefaultAsync(r => r.Id == empId);
-            return emp;
+            var req = await _context.Requests
+                                 .Include(r => r.RequestSolutions)
+                                 .FirstOrDefaultAsync(r => r.Id == requestId);
+            return req;
         }
+
     }
 }

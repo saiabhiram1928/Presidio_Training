@@ -2,16 +2,24 @@
 using EmployeeReqTrackerDALLibrary;
 using EmployeeReqTrackerModelLibrary;
 using EmployeeReqTrackerModelLibrary.Context;
+using System.Runtime.CompilerServices;
 
 namespace EmployeeReqTrackerBLLibrary
 {
-    public class EmployeeLoginBL
+    public class EmployeeLoginBL : IEmployeeLoginBL
     {
         private readonly IRepository<int, Employee> _repository;
         public EmployeeLoginBL()
         {
             IRepository<int, Employee> repo = new EmployeeRepository(new EmployeeReqTrackerContext());
             _repository = repo;
+        }
+
+        public async Task<Employee> GetDetailsEmployee(int key)
+        {
+            
+                var res = await _repository.GetById(key);
+                return res;
         }
 
         public async Task<bool> Login(Employee employee)
@@ -29,7 +37,7 @@ namespace EmployeeReqTrackerBLLibrary
                 await Console.Out.WriteLineAsync(ex.Message);
                 return false;
             }
-            await Console.Out.WriteLineAsync($"Employee {emp}");
+          
             if (emp == null)
             {
                 throw new NullReferenceException("Employee With Given Obj not found"); 
@@ -42,8 +50,15 @@ namespace EmployeeReqTrackerBLLibrary
         {
             employee.Role = "User";
             await Console.Out.WriteLineAsync($"{employee}");
+
             var result = await _repository.Add(employee);
             return result;
+        }
+        public async Task<bool> CheckEmpExists(int id)
+        {
+            var emp = await _repository.GetById(id);
+            if (emp == null) return false;
+            return true;
         }
     }
 }

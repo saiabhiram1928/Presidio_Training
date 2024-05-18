@@ -4,6 +4,7 @@ using EmployeeReqTrackerModelLibrary.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeReqTrackerModelLibrary.Migrations
 {
     [DbContext(typeof(EmployeeReqTrackerContext))]
-    partial class EmployeeReqTrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20240517025831_Request_moidification3")]
+    partial class Request_moidification3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,11 +106,11 @@ namespace EmployeeReqTrackerModelLibrary.Migrations
 
             modelBuilder.Entity("EmployeeReqTrackerModelLibrary.Request", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RequestId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RequestId"), 1L, 1);
 
                     b.Property<DateTime?>("ClosedDate")
                         .HasColumnType("datetime2");
@@ -130,7 +132,7 @@ namespace EmployeeReqTrackerModelLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("RequestId");
 
                     b.HasIndex("RequestClosedBy");
 
@@ -141,8 +143,8 @@ namespace EmployeeReqTrackerModelLibrary.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            RequestDate = new DateTime(2024, 5, 17, 11, 20, 49, 764, DateTimeKind.Local).AddTicks(6476),
+                            RequestId = 1,
+                            RequestDate = new DateTime(2024, 5, 15, 8, 28, 30, 762, DateTimeKind.Local).AddTicks(3694),
                             RequestMessage = "Laptop Repair",
                             RequestRaisedBy = 102,
                             RequestStatus = "Open"
@@ -192,7 +194,7 @@ namespace EmployeeReqTrackerModelLibrary.Migrations
                             RequestId = 1,
                             RequestRaiserComment = "Checked it",
                             SolutionText = "Check Bois",
-                            SolvedBy = 101,
+                            SolvedBy = 102,
                             SolvedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });

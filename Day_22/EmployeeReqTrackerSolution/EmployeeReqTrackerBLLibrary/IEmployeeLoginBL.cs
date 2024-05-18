@@ -11,5 +11,6 @@ namespace EmployeeReqTrackerBLLibrary
     {
         public Task<bool> Login(Employee employee);
         public Task<Employee> Register(Employee employee);
+        public Task<Employee> GetDetailsEmployee(int key);
     }
 }

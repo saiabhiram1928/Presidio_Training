@@ -4,6 +4,7 @@ using EmployeeReqTrackerModelLibrary.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeReqTrackerModelLibrary.Migrations
 {
     [DbContext(typeof(EmployeeReqTrackerContext))]
-    partial class EmployeeReqTrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20240517032410_Request_moidification5")]
+    partial class Request_moidification5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,7 +144,7 @@ namespace EmployeeReqTrackerModelLibrary.Migrations
                         new
                         {
                             Id = 1,
-                            RequestDate = new DateTime(2024, 5, 17, 11, 20, 49, 764, DateTimeKind.Local).AddTicks(6476),
+                            RequestDate = new DateTime(2024, 5, 15, 8, 54, 9, 989, DateTimeKind.Local).AddTicks(4369),
                             RequestMessage = "Laptop Repair",
                             RequestRaisedBy = 102,
                             RequestStatus = "Open"
@@ -192,7 +194,7 @@ namespace EmployeeReqTrackerModelLibrary.Migrations
                             RequestId = 1,
                             RequestRaiserComment = "Checked it",
                             SolutionText = "Check Bois",
-                            SolvedBy = 101,
+                            SolvedBy = 102,
                             SolvedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });

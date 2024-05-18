@@ -4,6 +4,7 @@ using EmployeeReqTrackerModelLibrary.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeReqTrackerModelLibrary.Migrations
 {
     [DbContext(typeof(EmployeeReqTrackerContext))]
-    partial class EmployeeReqTrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20240516065938_Feedback_Solution_Added")]
+    partial class Feedback_Solution_Added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,16 +106,16 @@ namespace EmployeeReqTrackerModelLibrary.Migrations
 
             modelBuilder.Entity("EmployeeReqTrackerModelLibrary.Request", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RequestNumber")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RequestNumber"), 1L, 1);
 
                     b.Property<DateTime?>("ClosedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("RequestClosedBy")
+                    b.Property<int>("RequestClosedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("RequestDate")
@@ -130,23 +132,13 @@ namespace EmployeeReqTrackerModelLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("RequestNumber");
 
                     b.HasIndex("RequestClosedBy");
 
                     b.HasIndex("RequestRaisedBy");
 
                     b.ToTable("Requests");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            RequestDate = new DateTime(2024, 5, 17, 11, 20, 49, 764, DateTimeKind.Local).AddTicks(6476),
-                            RequestMessage = "Laptop Repair",
-                            RequestRaisedBy = 102,
-                            RequestStatus = "Open"
-                        });
                 });
 
             modelBuilder.Entity("EmployeeReqTrackerModelLibrary.Solution", b =>
@@ -183,18 +175,6 @@ namespace EmployeeReqTrackerModelLibrary.Migrations
                     b.HasIndex("SolvedBy");
 
                     b.ToTable("Solutions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IsSolutionAccepted = false,
-                            RequestId = 1,
-                            RequestRaiserComment = "Checked it",
-                            SolutionText = "Check Bois",
-                            SolvedBy = 101,
-                            SolvedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("EmployeeReqTrackerModelLibrary.Feedback", b =>
@@ -221,7 +201,8 @@ namespace EmployeeReqTrackerModelLibrary.Migrations
                     b.HasOne("EmployeeReqTrackerModelLibrary.Employee", "RequestClosedByEmployee")
                         .WithMany("RequestsClosed")
                         .HasForeignKey("RequestClosedBy")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("EmployeeReqTrackerModelLibrary.Employee", "RequestRaisedByEmployee")
                         .WithMany("RequestsRaised")
