@@ -52,13 +52,12 @@ namespace DoctorAppointmentDALLibrary
 
         public bool Delete(int key)
         {
-            if (_doctor.ContainsKey(key) ==false) return null;
+            if (_doctor.ContainsKey(key) ==false) return false;
             Doctor RemovedDoc = _doctor[key];
             _doctor.Remove(key);
-            return RemovedDoc;
+            return true;
         }
-       
 
-        
+      
     }
 }

@@ -49,12 +49,12 @@ namespace DoctorAppointmentDALLibrary
             return _appointment[item.Id];
         }
 
-        public Appointmnet Delete(int key)
+        public bool Delete(int key)
         {
-            if (_appointment.ContainsKey(key) == false) return null;
+            if (_appointment.ContainsKey(key) == false) return false;
             Appointmnet RemovedDoc = _appointment[key];
             _appointment.Remove(key);
-            return RemovedDoc;
+            return true;
         }
 
 

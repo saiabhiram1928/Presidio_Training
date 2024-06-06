@@ -28,12 +28,12 @@ namespace DoctorAppointmentDALLibrary
             return _patients[id];
         }
 
-        public Patient Delete(int key)
+        public bool Delete(int key)
         {
-            if (_patients.ContainsKey(key) == false) return null;
+            if (_patients.ContainsKey(key) == false) return false;
             Patient RemovedDoc = _patients[key];
             _patients.Remove(key);
-            return RemovedDoc;
+            return true;
         }
 
         public List<Patient> GetAll()

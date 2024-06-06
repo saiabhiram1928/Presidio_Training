@@ -15,11 +15,11 @@ namespace DoctorAppointmentBLLibrary
         {
             throw new NullReferenceException(msg);
         }
-        public int DeleteDocotrDetalis(int key)
+        public bool DeleteDocotrDetalis(int key)
         {
             var response = _doctorService.Delete(key);
-            if (response == null) ThrowNullRefEx("The Doctor with given id doesnt present");
-            return response.Id;
+            if (response == false) ThrowNullRefEx("The Doctor with given id doesnt present");
+            return response;
         }
 
         public List<Doctor> GetAllDocotrs()
