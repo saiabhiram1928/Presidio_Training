@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@1,100&family=Bebas+Neue&family=Fira+Sans:wght@500&family=Imperial+Script&family=Raleway:ital,wght@1,100;1,200;1,300&family=Roboto:wght@500&display=swap');
+.border_test_b{
+    border: 2px solid blue;
+}.border_test_r{
+    border: 2px solid red;
+}
+.border_style:hover{
+    border-width: 2px 0px 2px 0px;
+}
+.font_style{
+    font-family: 'Imperial Script', cursive;
+}
+  @media(min-width : 798px) {
+    .vl {
+      background-color: lightseagreen;
+      width: 9px;
+      border: 2px solid lightseagreen;
+      height:8rem;
+      border-radius: 100px;
+    }
+    .grid_style{
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+    
+  }
+  .dynamic-txts li span::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+ 
+    --tw-bg-opacity: 1;
+    background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
+    border-left: 3px solid #FC6D6D;
+    animation: typing 4s steps(17) infinite;
+  }
+  .dynamic-txts li span{
+    position: relative;
+    margin: 5px 0;
+    line-height: 90px;
+  }
+  @keyframes typing {
+    40%,50%, 60%, 70%{
+      left: calc(90% + 30px);
+    }
+    100% ,90%, 0%{
+      left: 0;
+    }
+  }
+ 
+  }
+  @media(max-width : 640px){
+    .vl{
+      background-color: lightseagreen;
+        border-radius: 100px;
+      position: relative;
+        
+      height: 9px;
+      width: 10rem;
+    }
+  
+  }
+  
