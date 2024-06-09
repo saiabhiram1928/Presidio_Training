@@ -1,0 +1,18 @@
+1. 
+
+PUT
+  Activate user	
+  Only Admin can access the method
+  Admin can activate User and other Admins as well.
+
+Please plan the DTOs accordingly
+If required add the mapper methods
+
+
+2.
+Raise Request
+Get Request _ user (Only gets its own Requests )
+Get Request _ Admin (can get all the request whose status is Open),  sorted order of time
+
+
+
