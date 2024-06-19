@@ -3,6 +3,7 @@ using EmployeeRequestTrackerAPI.Models;
 using EmployeeRequestTrackerAPI.Models.DTOs.UserDTOs;
 using EmployeeRequestTrackerAPI.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,7 @@ namespace EmployeeRequestTrackerAPI.Controllers
             _logger = logger;
         }
         [HttpPost("Login")]
+        [EnableCors("MyCors")]
         [ProducesResponseType(typeof(LoginReturnDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<LoginReturnDTO>> Login(UserLoginDTO userLoginDTO)
@@ -36,6 +38,7 @@ namespace EmployeeRequestTrackerAPI.Controllers
             }
         }
         [HttpPost("Register")]
+        [EnableCors("MyCors")]
         [ProducesResponseType(typeof(Employee), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Employee>> Register(EmployeeUserDTO userDTO)
@@ -54,6 +57,7 @@ namespace EmployeeRequestTrackerAPI.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut("activate")]
+        [EnableCors("MyCors")]
         public async Task<IActionResult> ActivateUser([FromBody] UserActivationDTO userActivationDto)
         {
             try

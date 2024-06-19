@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandingPage- Flix</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <body class="bg-flix text-white">
+        <header class="bg-black bg-opacity-70 p-6 sticky w-full z-50" id="header">
+            <nav class="container mx-auto flex justify-between items-center">
+                <div class="text-red-600 text-2xl font-bold">
+                    <a href="">Flix</a>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="" class="hover:text-green-500 link-text">Home</a>
+                    <a href="#" class="hover:text-gray-300 link-text">About</a>
+                    <a onclick="QuotesClick(event)" class="hover:text-gray-300 link-text">Quotes</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="hamburger" class="focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="hidden md:inline">
+                    <button class="bg-red-600 hover:bg-red-700 text-white py-3 px-6 rounded-lg flex items-center justify-center">
+                        Login 
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-6 h-6 ml-2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                              </svg>
+                    </button>
+                </div>    
+            </nav>
+            <div id="mobileMenu" class="hidden md:hidden flex flex-col items-center bg-black bg-opacity-90 space-y-2 static">
+                <a href="" class="hover:text-gray-300">Home</a>
+                <a href="#" class="hover:text-gray-300">About</a>
+                <a onclick="QuotesClick(event)" class="hover:text-gray-300">Quotes</a>
+                <button class="bg-red-600 hover:bg-red-700 text-white py-3 px-6 rounded-lg flex items-center justify-center w-full">
+                    Login 
+                </button>
+            </div>
+        </header>
+        <section class="h-screen flex justify-center items-center container" id ="hero">
+            <div class="text-center max-w-lg border-2 md:text-3xl text-red-500 md:p-10">
+                Welcome To My World
+            </div>
+        </section>
+
+        <section id="quotes" class="h-screen flex justify-center items-center container">
+            <div class="container border-2 ">
+                <div class="grid md:grid-cols-2">
+                  <div class="p-4  border-2 ">
+                    <div class="h-full text-center flex flex-col items-center justify-center">
+                      <img alt="testimonial" class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="https://dummyimage.com/302x302">
+                      <p class="leading-relaxed">Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.</p>
+                      <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
+                      <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">HOLDEN CAULFIELD</h2>
+                      <p class="text-gray-500">Senior Product Designer</p>
+                    </div>
+                  </div>
+                  <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
+                    <div class="h-full text-center">
+                      <img alt="testimonial" class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="https://dummyimage.com/300x300">
+                      <p class="leading-relaxed">Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.</p>
+                      <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
+                      <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">ALPER KAMU</h2>
+                      <p class="text-gray-500">UI Develeoper</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </section>
+        <script src="index.js">
+        </script>
+    </body>
+</body>
+</html>

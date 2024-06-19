@@ -1,0 +1,22 @@
+.bg-flix {
+    background: linear-gradient(45deg, #141E30, #243B55);
+}
+.link-text{
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+.link-text:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    height: 2px;
+    left: 100%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+    .link-text:hover:after { 
+        width: 80%; 
+        left: 0; 
+    }

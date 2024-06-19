@@ -2,6 +2,7 @@
 using EmployeeRequestTrackerAPI.Interfaces;
 using EmployeeRequestTrackerAPI.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace EmployeeRequestTrackerAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+   
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
@@ -21,7 +23,7 @@ namespace EmployeeRequestTrackerAPI.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+       
         [HttpGet]
         [ProducesResponseType(typeof(IList<Employee>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
