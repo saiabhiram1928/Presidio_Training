@@ -1,0 +1,141 @@
+1)
+substr= ""
+        max_count= 0
+        curr_count= 0
+        k=0
+        for i in s:
+            if i in substr:
+                for j in range(len(substr)):
+                    if i==substr[j]:
+                        k=j+1
+                        break
+                substr= substr[k:]
+                curr_count= len(substr)
+            substr += i
+            curr_count= len(substr)
+            max_count = curr_count if curr_count> max_count else max_count
+        return max_count
+2)
+if(numRows  < 2):
+            return s
+        arr = ['']*numRows
+        dir = 0
+        row = 0
+        for i in s:
+            arr[row] += i
+            if row == numRows-1:
+                dir = 1
+            elif row == 0:
+                dir = 0
+            if(dir == 0):
+                row += 1
+            else:
+                row -= 1
+        return(''.join(arr))
+3)
+ n = len(nums)
+        nums.sort()
+        diff = 20001
+        val = 0
+        for i in range(n):
+            a = i + 1
+            b = n - 1
+            while(a < b):
+                cc = nums[i] + nums[a] + nums[b]
+                kk = abs(cc - target)
+                if(kk < diff):
+                    diff = kk
+                    val = cc
+                if(cc == target):
+                    return target
+                elif(cc < target):
+                    a += 1
+                else:
+                    b -= 1
+            
+        return val
+4)
+def generateParenthesis(self, n: int) -> List[str]:
+	def dfs(left, right, s):
+		if len(s) == n * 2:
+			res.append(s)
+			return 
+
+		if left < n:
+			dfs(left + 1, right, s + '(')
+
+		if right < left:
+			dfs(left, right + 1, s + ')')
+
+	res = []
+	dfs(0, 0, '')
+	return res
+5)
+if num1 == '0' or num2 == '0':
+            return '0'
+        
+        def dec(num):
+            ans = 0
+            for i in num:
+                ans = ans*10 +(ord(i) - ord('0'))
+            return ans
+
+        def en(s):
+            news = ''
+            while s:
+                a = s % 10
+                s = s // 10
+                news = chr(ord('0') + a) + news
+            return news
+        
+        return en(dec(num1)*dec(num2))
+6)
+  res=[]
+        dict1={}
+        for s in strs:
+            sortedstr=''.join(sorted(s))
+
+            if sortedstr not in dict1:
+                dict1[sortedstr]=[]
+
+            dict1[sortedstr].append(s)
+        res=list(dict1.values())
+        return res
+7)
+ints = {'0':0, '1':1, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9}
+        intToStr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+        result = [0]*(len(num1) + len(num2))
+        string = ''
+
+        for i in range(-1, -1*len(num1)-1, -1):
+            for j in range(-1, -1*len(num2)-1, -1):            
+
+                result[i+j+1] += ints[num1[i]]*ints[num2[j]]
+                result[i+j] += result[i+j+1] // 10
+                result[i+j+1] %= 10
+
+        for j in result:
+            string += intToStr[j]
+            
+        string = string.lstrip('0')
+
+        return '0' if (string == '') else string
+
+8)
+ gas = 0
+    for n in nums:
+        if gas < 0:
+            return False
+        elif n > gas:
+            gas = n
+        gas -= 1
+    return True
+9)
+ dp = [[1 if i == 0 or j == 0 else 0 for j in range(n)] for i in range(m)]
+
+    for i in range(1, m):
+        for j in range(1, n):
+            dp[i][j] = dp[i-1][j] + dp[i][j-1]
+
+    return dp[-1][-1]

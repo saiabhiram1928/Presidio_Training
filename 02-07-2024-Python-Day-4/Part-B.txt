@@ -1,0 +1,142 @@
+1)
+n = int(input())
+sizes = list(map(int, input().split()))
+freq = {}
+for s in sizes:
+    if s in freq:
+        freq[s] += 1
+    else:
+        freq[s] = 1
+
+
+k = int(input())
+ans = 0
+
+for _ in range(k):
+    size, price = map(int, input().split())
+    if size in freq and freq[size] > 0:
+        ans += price
+        freq[size] -= 1
+
+print(ans)
+
+2)
+def merge_the_tools(string, k):
+    for i in range(0, len(string), k):
+        temp = ""
+        seen = set()
+        # Iterate over each character in the current substring
+        for j in range(i, i + k):
+            if string[j] not in seen:
+                temp += string[j]
+                seen.add(string[j])
+        print(temp)
+3)
+import math
+import os
+import random
+import re
+import sys
+from collections import Counter
+
+if __name__ == '__main__':
+    s = input()
+    freq = Counter(s)
+    sorted_chars = sorted(freq.items(), key=lambda item: (-item[1], item[0]))
+    for char, count in sorted_chars[:3]:
+        print(f"{char} {count}")
+4)
+def is_leap(year):
+    leap = False
+    
+    if(year%4==0 ):
+        if(year%100==0):
+            if(year%400==0):
+                leap=True
+            else:
+                leap=False
+        else:
+            leap=True
+    else:
+        leap=False    
+
+    return leap
+
+year = int(input())
+print(is_leap(year))
+5)
+import math
+import os
+import random
+import re
+import sys
+
+if __name__ == '__main__':
+    n = int(input())
+    
+    for i in range(1,n+1):
+        print(i, end='')
+6)
+import math
+import os
+import random
+import re
+import sys
+
+
+if __name__ == '__main__':
+    n = int(input().strip())
+    if (n & 1):
+        print("Weird")
+    elif (n >= 2 and n <= 5):
+        print("Not Weird")
+    elif (n >= 6 and n <= 20):
+        print("Weird")
+    else:
+        print("Not Weird")
+7)
+if __name__ == '__main__':
+    n = int(input())
+    arr = map(int, input().split())
+    
+    maxi = -101
+    ans = -101
+    
+    for num in arr:
+        if num > maxi:
+            ans = maxi
+            maxi = num
+        elif num > ans and num != maxi:
+            ans = num
+            
+    print(ans)
+8)
+if __name__ == '__main__':
+    x = int(input())
+    y = int(input())
+    z = int(input())
+    n = int(input())
+    coordinates = [[i, j, k] for i in range(x + 1) for j in range(y + 1) for k in range(z + 1) if i + j + k != n]
+
+    print(coordinates)  
+9)
+if __name__ == '__main__':
+    a = int(input())
+    b = int(input())
+    
+    print(a + b)
+    print(a - b)
+    print(a * b)
+10)
+if __name__ == '__main__':
+    n = int(input())
+    
+    for i in range(0, n):
+        print(i * i)
+11)
+if __name__ == '__main__':
+    a = int(input())
+    b = int(input())
+    
+    print(a // b)
+    print(a / b)
